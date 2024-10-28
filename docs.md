@@ -31,7 +31,7 @@ The `catchAsync` function is designed to handle errors in asynchronous Express r
   - **এরর প্রপাগেশন:** যদি কোন এরর ঘটে, এটি `next(error)` কল করে পরবর্তী মিডলওয়্যারে এররটি পাঠায়।
 
 ## Example Usage
-```javascript
+
 import { NextFunction, Request, RequestHandler, Response } from "express";
 
 // catchAsync একটি হাই অর্ডার ফাংশন যা একটি অ্যাসিঙ্ক্রোনাস ফাংশন গ্রহণ করে
@@ -46,6 +46,7 @@ export const catchAsync = (fn: RequestHandler) => {
       });
   };
 };
+
 
 
 # 2.sendResponse Function
