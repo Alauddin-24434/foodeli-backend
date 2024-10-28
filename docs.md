@@ -13,7 +13,7 @@
 
 ---
 
-# 01. catchAsync Function
+# 1. catchAsync Function
 
 ## Purpose
 The `catchAsync` function is designed to handle errors in asynchronous Express route handlers. It helps to avoid repetitive try-catch blocks and centralizes error handling.
