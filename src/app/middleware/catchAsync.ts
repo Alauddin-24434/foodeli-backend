@@ -19,5 +19,5 @@ export const catchAsync = (fn: RequestHandler) => {
 // ----------------------------------------------
 // Hint: For more details about this function and error handling practices,
 // visit:docs.md 
-// Solve number:01
+// Solve number:1
 // ----------------------------------------------

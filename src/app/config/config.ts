@@ -18,6 +18,7 @@ interface Config {
     paymentUrl: string;
     paymentVerifyUrl: string;
   };
+  node_env:string;
 }
 
 const config: Config = {
@@ -35,6 +36,7 @@ const config: Config = {
     paymentUrl: process.env.PAYMENT_URL as string,
     paymentVerifyUrl: process.env.PAYMENT_VERIFY_URL as string,
   },
+  node_env:process.env.NODE_ENV as string,
 };
 
 export default config;

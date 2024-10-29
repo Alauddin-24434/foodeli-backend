@@ -29,5 +29,5 @@ export default sendResponse;
 // ----------------------------------------------
 // Hint: For more details about this function and error handling practices,
 // visit:docs.md 
-// Solve number:02
+// Solve number:2
 // ----------------------------------------------
