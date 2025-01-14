@@ -1,9 +1,23 @@
-import AppError from './appError'; // AppError ক্লাসটি আমদানি করা হচ্ছে
+import mongoose from "mongoose";
+import { TErrorSources, TGenericErrorResponse } from "../app/interfaces/errorSources";
 
-class CastError extends AppError {
-    constructor(value: any, path: string) {
-        super(400, `Invalid value '${value}' for path '${path}'`); // 400 Bad Request স্ট্যাটাস কোড সহ বার্তা সেট করা হচ্ছে
-    }
-}
+const castError = (
+  err: mongoose.Error.CastError,
+): TGenericErrorResponse => {
+  const errorSources: TErrorSources = [
+    {
+      path: err.path,
+      message: err.message,
+    },
+  ];
 
-export default CastError;
+  const statusCode = 400;
+
+  return {
+    statusCode,
+    message: "Invalid ID",
+    errorSources,
+  };
+};
+
+export default castError;

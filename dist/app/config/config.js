@@ -21,5 +21,6 @@ const config = {
         paymentUrl: process.env.PAYMENT_URL,
         paymentVerifyUrl: process.env.PAYMENT_VERIFY_URL,
     },
+    node_env: process.env.NODE_ENV,
 };
 exports.default = config;

@@ -6,7 +6,9 @@ dotenv.config();
 interface Config {
   port: number;
   db_url: string;
+
   jwt: {
+ 
     accessSecret: string;
     accessExpiresIn: string;
     refreshSecret: string;
@@ -24,7 +26,9 @@ interface Config {
 const config: Config = {
   port: parseInt(process.env.PORT as string, 10) || 5000,
   db_url: process.env.DB_URL as string,
+ 
   jwt: {
+
     accessSecret: process.env.JWT_ACCESS_SECRET as string,
     accessExpiresIn: process.env.JWT_ACCESS_EXPIRES_IN as string,
     refreshSecret: process.env.JWT_REFRESH_SECRET as string,

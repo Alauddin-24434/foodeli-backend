@@ -7,7 +7,8 @@ import handleZodError from "../../errors/handleZodError";
 import handleDuplicateError from "../../errors/duplicateError";
 import config from "../config/config";
 import AppError from "../../errors/appError";
-import CastError from "../../errors/castError";
+import castError from "../../errors/castError";
+import validationError from "../../errors/validationError";
 
 // import { TImageFiles } from '../interfaces/image.interface'
 // import { deleteImageFromCloudinary } from '../utils/deleteImage'
@@ -22,22 +23,36 @@ const globalErrorHandler = async (err: any, req: Request, res: Response, next: N
     },
   ];
 
-
+// zod error
   if (err instanceof ZodError) {
     const simplifiedError = handleZodError(err);
     statusCode = simplifiedError?.statusCode;
     message = simplifiedError?.message;
     errorSources = simplifiedError?.errorSources;
-  } else if (err?.code === 11000) {
+  } 
+  else if (err?.name === "ValidationError") {
+    const simplifiedError = validationError(err);
+    statusCode = simplifiedError?.statusCode;
+    message = simplifiedError?.message;
+    errorSources = simplifiedError?.errorSources;
+  } 
+
+  // duplicate error
+  else if (err?.code === 11000) {
     const simplifiedError = handleDuplicateError(err);
     statusCode = simplifiedError?.statusCode;
     message = simplifiedError?.message;
     errorSources = simplifiedError?.errorSources;
-  } else if (err instanceof CastError) {
-    statusCode = err.statusCode;
-    message = err.message; // CastError এর বার্তা
-   
-  } else if (err instanceof AppError) {
+  } 
+  // cast error
+  else if (err?.name === "CastError") {
+    const simplifiedError = castError(err);
+    statusCode = simplifiedError?.statusCode;
+    message = simplifiedError?.message;
+    errorSources = simplifiedError?.errorSources;
+  }
+  // app error
+  else if (err instanceof AppError) {
     statusCode = err?.statusCode;
     message = err?.message;
     errorSources = [
@@ -49,7 +64,7 @@ const globalErrorHandler = async (err: any, req: Request, res: Response, next: N
   }
 
   //ultimate return
-  return res.status(statusCode).json({
+  res.status(statusCode).json({
     success: false,
     message,
     errorSources,

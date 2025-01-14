@@ -5,11 +5,12 @@ import { Document } from "mongoose";
 // IUser ইন্টারফেসে extends Document ব্যবহার করা হয় যাতে Mongoose এর নির্মিত প্রপার্টি এবং মেথডগুলো, যেমন _id, .save(), এবং .remove(), পেতে পারি, যা MongoDB এর সাথে কার্যকরীভাবে কাজ করতে সাহায্য করে। এটি আমাদের ব্যবহারকারীর ইন্টারফেসকে Mongoose ডকুমেন্টের সমস্ত প্রয়োজনীয় কার্যকারিতা প্রদান করে, সঙ্গে TypeScript এর সাথে টাইপ সেফটি বজায় রাখে।
 
 export interface IUser extends Document {
-    name: string;          
-    email: string;         
-    password: string;      
-    role: 'admin' | 'user'; 
-    profileImage?: string; // Optional field for user profile image
-    createdAt: Date;      
-    updatedAt: Date;    
+  name: string;
+  email: string;
+  password: string;
+  role: "superAdmin" | "admin" | "user";
+  profileImage?: string; // Optional field for user profile image
+  userStatus: "active" | "banned"; // Possible statuses
+  createdAt: Date;
+  updatedAt: Date;
 }

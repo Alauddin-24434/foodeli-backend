@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 // Define the user validation schema using Zod
-export const userValidation = z.object({
+export const registerAuthValidation= z.object({
     body: z.object({
         name: z.string()
             .min(1, "Name is required") // Name must be a non-empty string
@@ -11,4 +11,15 @@ export const userValidation = z.object({
         role: z.enum(['admin', 'user']).optional(),
         profileImage: z.string().optional().nullable(),
     }),
+});
+
+
+
+// login validation
+
+export const registerAuthLogin= z.object({
+    body:z.object({
+        email:z.string().email("Invalid email format"),
+        password:z.string().min(6,"Password must be at least 6 characters long")
+    })
 });

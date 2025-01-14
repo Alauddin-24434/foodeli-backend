@@ -1,8 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import { verifyToken } from "../../utils/verifyToken";
-import UserModel from "../models/user.model";
+
 import { catchAsync } from "./catchAsync";
 import AppError from "../../errors/appError";
+import UserModel from "../modules/User/user.model";
 
 export const authenticate = (requiredRole: string) => {
     return catchAsync(async (req: Request, res: Response, next: NextFunction): Promise<void> => {
